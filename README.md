@@ -8,7 +8,9 @@
 
 - Vue UI
 
-- Vue3
+- Vue State
+
+- Typescript
 
 - Tailwind
 
