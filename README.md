@@ -1,14 +1,16 @@
-# alpha_shop_cart_vue
+# Ｍusic-App
 
 #### This is a function page of music app built by Vue.js and Tailwand.
 
-#### ☞ ☞ Take a look at this [alpha_shop_cart_vue](https://muchuanhung.github.io/music-app_vue/). 👀
+#### ☞ ☞ Take a look at this [Music-App](https://muchuanhung.github.io/music-app_vue/). 👀
 
 #### 使用技術：
 
 - Vue UI
 
 - Vue State
+
+- Validation 
 
 - Typescript
 

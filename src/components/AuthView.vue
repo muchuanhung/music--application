@@ -149,14 +149,13 @@
             <!-- Password -->
             <div class="mb-3">
               <label class="inline-block mb-2">Password</label>
-              <vee-field
-                type="password"
-                name="password"
+              <vee-field  :bails="false" name="password" />
+              <input
                 class="
                 block w-full py-1.5 px-3 text-gray-800
                 border border-gray-300 transition duration-500
                 focus:outline-none focus:border-black rounded"
-                placeholder="Password"
+                placeholder="Password" type="password"
               />
               <ErrorMessage class="text-red-600" name="password" />
             </div>
