@@ -8,14 +8,15 @@
 
 - Vue UI
 
-- Vue State
+- Vue State & Mutation
 
-- Validation 
+- VeeValidation 
 
 - Typescript
 
 - Tailwind
 
+- Testing Unit
 
 ## 🏃‍ Project setup and run
 
