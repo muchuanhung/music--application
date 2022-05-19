@@ -1,6 +1,7 @@
 <template>
-   <!-- Auth Modal -->
-  <div class="fixed z-10 inset-0 overflow-y-auto hidden" id="modal">
+  <!-- Auth Modal -->
+  <div class="fixed z-10 inset-0 overflow-y-auto" id="modal"
+    :class="{ hidden: !authModalShow }">
     <div class="flex items-end justify-center min-h-screen pt-4 px-4 pb-20 text-center
       sm:block sm:p-0">
       <div class="fixed inset-0 transition-opacity">
@@ -19,7 +20,7 @@
           <div class="flex justify-between items-center pb-4">
             <p class="text-2xl font-bold">Your Account</p>
             <!-- Modal Close Button -->
-            <div class="modal-close cursor-pointer z-50">
+            <div class="modal-close cursor-pointer z-50" @click.prevent="toggleAuthModal">
               <i class="fas fa-times"></i>
             </div>
           </div>
@@ -27,29 +28,39 @@
           <!-- Tabs -->
           <ul class="flex flex-wrap mb-4">
             <li class="flex-auto text-center">
-              <a class="block rounded py-3 px-4 transition hover:text-white text-white
-                bg-blue-600" href="#">Login</a>
+              <a class="block rounded py-3 px-4 transition"
+                href="#" @click.prevent="tab = 'login'"
+                :class="{
+                  'hover:text-white text-white bg-blue-600': tab === 'login',
+                  'hover:text-blue-600': tab === 'register'
+                }">
+                Login
+              </a>
             </li>
             <li class="flex-auto text-center">
-              <a class="block rounded py-3 px-4 transition"
-                href="#">Register</a>
+              <a class="block rounded py-3 px-4 transition hover:text-blue-600"
+                href="#" @click.prevent="tab = 'register'"
+                :class="{
+                  'hover:text-white text-white bg-blue-600': tab === 'register',
+                  'hover:text-blue-600': tab === 'login'
+                }">Register</a>
             </li>
           </ul>
 
           <!-- Login Form -->
-          <form>
+          <form v-show="tab === 'login'">
             <!-- Email -->
             <div class="mb-3">
-              <span class="inline-block mb-2">Email</span>
-              <input type="email" aria-label="email"
+              <label class="inline-block mb-2">Email</label>
+              <input type="email"
                 class="block w-full py-1.5 px-3 text-gray-800 border border-gray-300 transition
                   duration-500 focus:outline-none focus:border-black rounded"
                 placeholder="Enter Email" />
             </div>
             <!-- Password -->
             <div class="mb-3">
-              <span class="inline-block mb-2">Password</span>
-              <input type="password" aria-label="password"
+              <label class="inline-block mb-2">Password</label>
+              <input type="password"
                 class="block w-full py-1.5 px-3 text-gray-800 border border-gray-300 transition
                   duration-500 focus:outline-none focus:border-black rounded"
                 placeholder="Password" />
@@ -61,49 +72,52 @@
             </button>
           </form>
           <!-- Registration Form -->
-          <form>
+          <vee-form v-show="tab === 'register'" :validation-schema="schema">
             <!-- Name -->
             <div class="mb-3">
-              <span class="inline-block mb-2">Name</span>
-              <input type="text" aria-label="text"
+              <label class="inline-block mb-2">Name</label>
+              <vee-field type="text" name="name"
                 class="block w-full py-1.5 px-3 text-gray-800 border border-gray-300 transition
                   duration-500 focus:outline-none focus:border-black rounded"
-                placeholder="Enter Name" />
+                placeholder="Enter Name" :rule="{
+                  required: true
+                }" />
+                <ErrorMessage class="text-red-600" name="" />
             </div>
             <!-- Email -->
             <div class="mb-3">
-              <span class="inline-block mb-2">Email</span>
-              <input type="email" aria-label="email"
+              <label class="inline-block mb-2">Email</label>
+              <input type="email"
                 class="block w-full py-1.5 px-3 text-gray-800 border border-gray-300 transition
                   duration-500 focus:outline-none focus:border-black rounded"
                 placeholder="Enter Email" />
             </div>
             <!-- Age -->
             <div class="mb-3">
-              <span class="inline-block mb-2">Age</span>
-              <input type="number" aria-label="number"
+              <label class="inline-block mb-2">Age</label>
+              <input type="number"
                 class="block w-full py-1.5 px-3 text-gray-800 border border-gray-300 transition
                   duration-500 focus:outline-none focus:border-black rounded" />
             </div>
             <!-- Password -->
             <div class="mb-3">
-              <span class="inline-block mb-2">Password</span>
-              <input type="password" aria-label="password"
+              <label class="inline-block mb-2">Password</label>
+              <input type="password"
                 class="block w-full py-1.5 px-3 text-gray-800 border border-gray-300 transition
                   duration-500 focus:outline-none focus:border-black rounded"
                 placeholder="Password" />
             </div>
             <!-- Confirm Password -->
             <div class="mb-3">
-              <span class="inline-block mb-2">Confirm Password</span>
-              <input type="password" aria-label="password"
+              <label class="inline-block mb-2">Confirm Password</label>
+              <input type="password"
                 class="block w-full py-1.5 px-3 text-gray-800 border border-gray-300 transition
                   duration-500 focus:outline-none focus:border-black rounded"
                 placeholder="Confirm Password" />
             </div>
             <!-- Country -->
             <div class="mb-3">
-            <span class="inline-block mb-2">Country</span>
+              <label class="inline-block mb-2">Country</label>
               <select
                 class="block w-full py-1.5 px-3 text-gray-800 border border-gray-300 transition
                   duration-500 focus:outline-none focus:border-black rounded">
@@ -114,28 +128,50 @@
             </div>
             <!-- TOS -->
             <div class="mb-3 pl-6">
-              <input type="checkbox" aria-label="c" class="w-4 h-4 float-left -ml-6 mt-1 rounded" />
-              <span class="inline-block"> Accept terms of service </span>
+              <input type="checkbox" class="w-4 h-4 float-left -ml-6 mt-1 rounded" />
+              <label class="inline-block">Accept terms of service</label>
             </div>
             <button type="submit"
               class="block w-full bg-purple-600 text-white py-1.5 px-3 rounded transition
                 hover:bg-purple-700">
               Submit
             </button>
-          </form>
+          </vee-form>
         </div>
       </div>
     </div>
   </div>
+
 </template>
 
 <script>
+import { mapMutations, mapState } from 'vuex';
+
 export default {
   name: 'AuthView',
-
+  data() {
+    return {
+      tab: 'login',
+      schema: {
+        name: 'required',
+        email: '',
+        age: '',
+        password: '',
+        confirm_password: '',
+        country: '',
+        tos: '',
+      },
+    };
+  },
+  computed: {
+    // ...mapState({
+    //   modal: 'authModalShow',
+    // }),
+    ...mapState(['authModalShow']),
+  },
+  methods: {
+    // 陣列、物件指定方法和mapState一樣
+    ...mapMutations(['toggleAuthModal']),
+  },
 };
 </script>
-
-<style>
-
-</style>

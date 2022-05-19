@@ -10,7 +10,9 @@
         <ul class="flex flex-row mt-1">
           <!-- Navigation Links -->
           <li>
-            <a class="px-2 text-white" href="#" @click.prevent="toggleAuthModal">
+            <a class="px-2 text-white" href="#"
+            @click.prevent="toggleAuthModal"
+            >
               Login / Register
             </a>
           </li>
@@ -30,6 +32,7 @@ export default {
   name: 'HeaderView',
   methods: {
     ...mapMutations(['toggleAuthModal']),
+    // 抓取index.js store 的state狀態
     // toggleAuthModal() {
     //   this.$store.commit('toggleAuthModal');
     // },

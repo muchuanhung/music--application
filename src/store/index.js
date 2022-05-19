@@ -1,14 +1,18 @@
 import { createStore } from 'vuex';
 
+// 全域 global state setting
 export default createStore({
   state: {
-  },
-  getters: {
+    authModalShow: false,
   },
   mutations: {
+    // 將state 設定為參數
+    toggleAuthModal: (state) => {
+      // 將state boolen 互轉
+      state.authModalShow = !state.authModalShow;
+    },
   },
-  actions: {
-  },
-  modules: {
+  getters: {
+    // authModalShow: (state) => state.authModalShow,
   },
 });
