@@ -8,17 +8,21 @@
       <div class="flex flex-grow items-center">
         <!-- Primary Navigation -->
         <ul class="flex flex-row mt-1">
-          <!-- Navigation Links -->
-          <li>
-            <a class="px-2 text-white" href="#"
-            @click.prevent="toggleAuthModal"
-            >
+          <!-- Navigation Links v-if/v-else 做state switch -->
+          <li v-if="!userLoggedIn">
+            <a class="px-2 text-white" href="#" @click.prevent="toggleAuthModal">
               Login / Register
             </a>
           </li>
-          <li>
-            <a class="px-2 text-white" href="#">Manage</a>
-          </li>
+          <template v-else>
+            <li>
+              <a class="px-2 text-white" href="#">Manage</a>
+            </li>
+            <li>
+              <a class="px-2 text-white" href="#"
+                @click.prevent="signout">Logout</a>
+            </li>
+          </template>
         </ul>
       </div>
     </nav>
@@ -26,12 +30,16 @@
 </template>
 
 <script>
-import { mapMutations } from 'vuex';
+import { mapMutations, mapState, mapActions } from 'vuex';
 
 export default {
   name: 'HeaderView',
+  computed: {
+    ...mapState(['userLoggedIn']),
+  },
   methods: {
     ...mapMutations(['toggleAuthModal']),
+     ...mapActions(['signout']),
     // 抓取index.js store 的state狀態
     // toggleAuthModal() {
     //   this.$store.commit('toggleAuthModal');

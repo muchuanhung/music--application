@@ -7,13 +7,18 @@ import './assets/main.css';
 // 表單認證套件
 import VeeValidatePlugin from './includes/validation';
 // Firebase
-import './includes/firebase';
+import { auth } from './includes/firebase';
 
+let app;
 
-const app = createApp(App);
+auth.onAuthStateChanged(() => {
+  if (!app) {
+    app = createApp(App);
 
-app.use(store);
-app.use(router);
-app.use(VeeValidatePlugin);
+    app.use(store);
+    app.use(router);
+    app.use(VeeValidatePlugin);
 
-app.mount('#app');
+    app.mount('#app');
+  }
+});
