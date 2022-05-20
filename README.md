@@ -10,9 +10,9 @@
 
 - Vue State & Mutation
 
-- VeeValidation 
+- VeeValidation 表單驗證套件
 
-- Typescript
+- Firebase 帳號註冊權限控管
 
 - Tailwind
 
