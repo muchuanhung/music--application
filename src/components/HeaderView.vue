@@ -3,24 +3,39 @@
   <header id="header" class="bg-gray-700">
     <nav class="container mx-auto flex justify-start items-center py-5 px-4">
       <!-- App Name -->
-      <a class="text-white font-bold uppercase text-2xl mr-4" href="#">Music</a>
+      <router-link class="text-white font-bold uppercase text-2xl mr-4" to="/" 
+      exact-active-class="no-active">
+        Music
+      </router-link>
 
       <div class="flex flex-grow items-center">
         <!-- Primary Navigation -->
         <ul class="flex flex-row mt-1">
           <!-- Navigation Links v-if/v-else 做state switch -->
+          <li>
+            <router-link class="px-2 text-white" to="/about">
+              About
+            </router-link>
+          </li>
           <li v-if="!userLoggedIn">
-            <a class="px-2 text-white" href="#" @click.prevent="toggleAuthModal">
+            <a
+              class="px-2 text-white"
+              href="#"
+              @click.prevent="toggleAuthModal"
+            >
               Login / Register
             </a>
           </li>
           <template v-else>
             <li>
-              <a class="px-2 text-white" href="#">Manage</a>
+              <router-link class="px-2 text-white" to="/manage">
+                Manage
+              </router-link>
             </li>
             <li>
-              <a class="px-2 text-white" href="#"
-                @click.prevent="signout">Logout</a>
+              <a class="px-2 text-white" href="#" @click.prevent="signout"
+                >Logout</a
+              >
             </li>
           </template>
         </ul>
@@ -30,16 +45,16 @@
 </template>
 
 <script>
-import { mapMutations, mapState, mapActions } from 'vuex';
+import { mapMutations, mapState, mapActions } from "vuex";
 
 export default {
-  name: 'HeaderView',
+  name: "HeaderView",
   computed: {
-    ...mapState(['userLoggedIn']),
+    ...mapState(["userLoggedIn"]),
   },
   methods: {
-    ...mapMutations(['toggleAuthModal']),
-     ...mapActions(['signout']),
+    ...mapMutations(["toggleAuthModal"]),
+    ...mapActions(["signout"]),
     // 抓取index.js store 的state狀態
     // toggleAuthModal() {
     //   this.$store.commit('toggleAuthModal');
