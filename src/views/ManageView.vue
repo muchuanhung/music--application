@@ -37,7 +37,7 @@
                         transition duration-500 focus:outline-none focus:border-black rounded"
                       placeholder="Enter Genre" />
                   </div>
-                  <button type="submit" class="py-1.5 px-3 rounded text-white bg-green-600">
+                  <button type="submit" class="py-1.5 px-3 mr-3 rounded text-white bg-green-600">
                     Submit
                   </button>
                   <button type="submit" class="py-1.5 px-3 rounded text-white bg-gray-600">
