@@ -3,7 +3,8 @@
   <header id="header" class="bg-gray-700">
     <nav class="container mx-auto flex justify-start items-center py-5 px-4">
       <!-- App Name -->
-      <router-link class="text-white font-bold uppercase text-2xl mr-4" to="/" 
+      <!-- 針對不作用的link 個別css區隔 -->
+      <router-link class="text-white font-bold uppercase text-2xl mr-4" :to="{ name: 'home'}"
       exact-active-class="no-active">
         Music
       </router-link>
