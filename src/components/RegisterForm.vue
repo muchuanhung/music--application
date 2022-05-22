@@ -17,7 +17,8 @@
       <vee-field
         type="text"
         name="name"
-        class="block w-full py-1.5 px-3 text-gray-800 border border-gray-300 transition duration-500 focus:outline-none focus:border-black rounded"
+        class="block w-full py-1.5 px-3 text-gray-800 border border-gray-300
+         transition duration-500 focus:outline-none focus:border-black rounded"
         placeholder="Enter Name"
       />
       <ErrorMessage class="text-red-600" name="name" />
@@ -28,7 +29,8 @@
       <vee-field
         type="email"
         name="email"
-        class="block w-full py-1.5 px-3 text-gray-800 border border-gray-300 transition duration-500 focus:outline-none focus:border-black rounded"
+        class="block w-full py-1.5 px-3 text-gray-800 border border-gray-300
+         transition duration-500 focus:outline-none focus:border-black rounded"
         placeholder="Enter Email"
       />
       <ErrorMessage class="text-red-600" name="email" />
@@ -39,7 +41,8 @@
       <vee-field
         type="number"
         name="age"
-        class="block w-full py-1.5 px-3 text-gray-800 border border-gray-300 transition duration-500 focus:outline-none focus:border-black rounded"
+        class="block w-full py-1.5 px-3 text-gray-800 border border-gray-300
+         transition duration-500 focus:outline-none focus:border-black rounded"
       />
       <ErrorMessage class="text-red-600" name="age" />
     </div>
@@ -48,7 +51,8 @@
       <label class="inline-block mb-2">Password</label>
       <vee-field name="password" :bails="false" v-slot="{ field, errors }">
         <input
-          class="block w-full py-1.5 px-3 text-gray-800 border border-gray-300 transition duration-500 focus:outline-none focus:border-black rounded"
+          class="block w-full py-1.5 px-3 text-gray-800 border border-gray-300
+           transition duration-500 focus:outline-none focus:border-black rounded"
           type="password"
           placeholder="Password"
           v-bind="field"
@@ -64,7 +68,8 @@
       <vee-field
         type="password"
         name="confirm_password"
-        class="block w-full py-1.5 px-3 text-gray-800 border border-gray-300 transition duration-500 focus:outline-none focus:border-black rounded"
+        class="block w-full py-1.5 px-3 text-gray-800 border border-gray-300
+         transition duration-500 focus:outline-none focus:border-black rounded"
         placeholder="Confirm Password"
       />
       <ErrorMessage class="text-red-600" name="confirm_password" />
@@ -75,7 +80,8 @@
       <vee-field
         as="select"
         name="country"
-        class="block w-full py-1.5 px-3 text-gray-800 border border-gray-300 transition duration-500 focus:outline-none focus:border-black rounded"
+        class="block w-full py-1.5 px-3 text-gray-800 border border-gray-300
+         transition duration-500 focus:outline-none focus:border-black rounded"
       >
         <option value="USA">USA</option>
         <option value="Mexico">Mexico</option>
@@ -98,7 +104,8 @@
     <button
       type="submit"
       :disabled="reg_in_submission"
-      class="block w-full bg-purple-600 text-white py-1.5 px-3 rounded transition hover:bg-purple-700"
+      class="block w-full bg-purple-600 text-white py-1.5 px-3 rounded
+       transition hover:bg-purple-700"
     >
       Submit
     </button>
@@ -106,7 +113,6 @@
 </template>
 
 <script>
-import firebase from '@/includes/firebase';
 export default {
   name: 'RegisterForm',
   data() {

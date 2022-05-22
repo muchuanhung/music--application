@@ -46,17 +46,26 @@
 </template>
 
 <script>
-import { mapMutations, mapState, mapActions } from "vuex";
+import { mapMutations, mapState, mapActions } from 'vuex';
 
 export default {
-  name: "HeaderView",
+  name: 'HeaderView',
   computed: {
-    ...mapState(["userLoggedIn"]),
+    ...mapState(['userLoggedIn']),
   },
   methods: {
-    ...mapMutations(["toggleAuthModal"]),
-    ...mapActions(["signout"]),
-    // 抓取index.js store 的state狀態
+    ...mapMutations(['toggleAuthModal']),
+    signout() {
+      this.$store.dispatch('signout', {
+        router: this.$router,
+        route: this.$route,
+      });
+
+      // console.log(this.$route);
+      if (this.$route.meta.requiresAuth) {
+        this.$router.push({ name: 'home' });
+      }
+    },
     // toggleAuthModal() {
     //   this.$store.commit('toggleAuthModal');
     // },
